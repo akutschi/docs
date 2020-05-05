@@ -1,0 +1,3 @@
+[submodule "themes/dokugo"]
+	path = themes/dokugo
+	url = https://gitlab.com/akutschi/dokugo.git

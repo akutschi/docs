@@ -1,0 +1,46 @@
+baseURL = "https://akutschi.gitlab.io/docs/"
+languageCode = "en-us"
+title = "docs"
+theme = "dokugo"
+enableEmoji = true  
+
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+
+[params]
+  homeText = "No eye candy!"
+  dateFormat = "2006-01-02"
+
+[markup]
+  [markup.highlight]
+    lineNos = true
+    lineNumbersInTable = true
+    style = "monokai"
+  [markup.tableOfContents]
+    endLevel = 6
+    ordered = false
+    startLevel = 2
+
+[menu]
+  [[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
+  [[menu.main]]
+    name = "Blog"
+    url = "/blog/"
+    weight = 2
+   [[menu.main]]
+    name = "Documentation"
+    url = "/documentation/"
+    weight = 3
+  [[menu.main]]
+    name = "Categories"
+    url = "/categories/"
+    weight = 4
+  [[menu.main]]
+    name = "Tags"
+    url = "/tags/"
+    weight = 5
