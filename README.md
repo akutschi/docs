@@ -1,3 +1,5 @@
+**The GitHub repository is just a mirror. The [original code](https://gitlab.com/akutschi/docs/) is maintained at [GitLab](https://gitlab.com/)**
+
 # About this repository
 
 The content of this repository is used to generate a website for documentation purposes.
