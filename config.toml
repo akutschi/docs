@@ -17,7 +17,7 @@ enableEmoji = true
   [markup.highlight]
     lineNos = true
     lineNumbersInTable = true
-    style = "monokai"
+    style = "friendly"
   [markup.tableOfContents]
     endLevel = 6
     ordered = false
