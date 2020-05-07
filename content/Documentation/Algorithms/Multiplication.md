@@ -5,7 +5,7 @@ categories:
     - algorithms
 tags:
     - multiplication
-draft: true
+draft: false
 ---
 
 ## Grade-School Multiplication
