@@ -21,6 +21,6 @@ It is an efficient algorithm and it is an improvement over other more obvious so
 
 ## Example
 
-![Merge sort algorithm diagram](/Merge-Sort/1000px-Merge_sort_algorithm_diagram.svg.png)
+![Merge sort algorithm diagram](1000px-Merge_sort_algorithm_diagram.svg.png)
 
 
