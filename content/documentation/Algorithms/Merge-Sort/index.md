@@ -4,7 +4,6 @@ date: 2020-05-07T18:29:29-04:00
 categories:
     - algorithms
 tags:
-    - merge sort
     - sort algorithm
     - divide & conquer
 draft: false
