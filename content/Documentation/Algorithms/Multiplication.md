@@ -137,13 +137,15 @@ The **base case** for integer multiplication are two single-digit numbers. They 
 
 ### Karatsuba Algorithm
 
+The Karatsuba Algorithm is an improved version of the recursive algorithm explained in the previous chapter.
+
 Starting with the following expression that just expresses the multiplication of x and y.
 
 $$
 x \cdot y = 10^n ac + 10^{n/2} (ad+bc) + bd
 $$
 
-At a first glance four recursive calls are required, but there are only three computations in the formula that are required. There is no interest in the results of %$ad%$ and %$bc%$ per se, just the sum of both products are of interest.
+At a first glance four recursive calls are required, but there are only three computations in the formula that are required. There is no interest in the exact results of %$ad%$ and %$bc%$, just the sum of both products are of interest.
 
 
 ```plaintext
@@ -159,6 +161,9 @@ Step 3
 Step 4: Gauss's Trick
   Compute  (S3               ) - S1 - S2 =
            (ac + ad + bc + bd) - ac - bd = ad + bc
+
+Step 5
+  Compute   10^n ac + 10^{n/2} (ad+bc) + bd
 ```
 
 This shows there are just three recursive multiplications required - plus some additions. 
