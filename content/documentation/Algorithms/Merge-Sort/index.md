@@ -9,21 +9,23 @@ tags:
 draft: false
 ---
 
-## Overview
-
 The merge sort algorithm is a quite old algorithm to solve the __sorting problem__ but still widely used and it is a good introduction into __divide & conquer__ algorithms. With divide and conquer the problem to solve will be break down into smaller sub-problems which will solved recursively. The results of these sub-problems will be combined somehow to get a solution for the initial problem.
 
 It is an efficient algorithm and it is an improvement over other more obvious sort algorithms like 
 
-- Selection sort,
-- Insertion sort,
-- Bubble sort.
+- [Selection sort]({{< ref "../Selection-Sort/index.md" >}}),
+- [Insertion sort]({{< ref "../Insertion-Sort/index.md" >}}),
+- [Bubble sort]({{< ref "../Bubble-Sort/index.md" >}}).
 
 ## Example
 
 We start with an unsorted array and call recursively the merge sort algorithm. In a first step we split the array in two halves. Then we split each half again, we repeat this until we have each number separated. The second step is to sort and merge until we have a sorted array.
 
 ![Merge sort algorithm diagram](1000px-Merge_sort_algorithm_diagram.svg.png)
+
+## Explanation
+
+## Complexity / Analysis / Running Time
 
 ## Pseudocode
 
@@ -47,9 +49,5 @@ for k=1 to n
 end
 ```
 
-## Running Time
-
-## Analysis
-
-
+## Implementation
 
