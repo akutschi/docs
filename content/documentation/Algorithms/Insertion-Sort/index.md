@@ -1,7 +1,7 @@
 ---
 title: "Insertion Sort"
 date: 2020-05-09T10:45:49-04:00
-category:
+categories:
     - algorithms
 tags:
     - sort algorithm
