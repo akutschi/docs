@@ -5,6 +5,6 @@ categories:
     - algorithms
 tags:
     - sort algorithm
-draft: true
+draft: false
 ---
  
