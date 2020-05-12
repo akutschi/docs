@@ -25,7 +25,52 @@ We start with an unsorted array and call recursively the merge sort algorithm. I
 
 ## Explanation
 
+An unsorted array will divided into sub-lists until the base case is reached. The base case is a list of one element and can therefore be considered sorted. The next step is merge these sub-lists until there is only one list remaining.
+
+To merge two sub-lists
+
+- compare the first entries of each sub-list
+- the smaller entry goes as first value into the merged list
+- then the next entry where the smallest value of the previous comparison was will be compared with the unmoved value of the other sub-list
+- the smallest value of this comparison will be moved into the merged list as second value
+- repeat this until the sub-lists are empty
+
+```plaintext
+Unsorted list                          6,5,3,1,8,7,2,4
+
+Base cases              6     5     3     1     8     7     2     4
+Merge 1                   5,6         1,3         7,8         2,4
+Merge 2                       1
+                          5,6           3
+                              1,3
+                          5,6
+Sorted sub-list                1,3,5,6
+Merge 3                                                2
+                                                   7,8           4
+                                                       2,4
+                                                   7,8
+Sorted sub-list                1,3,5,6                 2,4,7,8        Compare first values (1 and 2)
+Merge 4                                 1
+                                 3,5,6                 2,4,7,8        Compare the remaining first values (3 and 2)
+                                        1,2
+                                 3,5,6                   4,7,8        Compare the remaining first values (3 and 4)
+                                        1,2,3
+                                   5,6                   4,7,8        Compare the remaining first values (5 and 4)
+                                        1,2,3,4
+                                   5,6                     7,8        Compare the remaining first values (5 and 7)
+                                        1,2,4,5
+                                     6                     7,8        Compare the remaining first values (6 and 7)
+                                        1,2,3,4,5,6
+                                                           7,8        Move remaining values at the the end of the merged list
+Sorted list                             1,2,3,4,5,6,7,8
+```
 ## Complexity / Analysis / Running Time
+
+Worst-case performance
+
+$$
+O(n \cdot \log n)
+$$
 
 ## Pseudocode
 
