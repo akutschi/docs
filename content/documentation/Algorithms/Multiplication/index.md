@@ -30,7 +30,7 @@ This is the typical way taught in schools for multiplying numbers by hand in bas
          7006652 ( = 7,006,652         )
 ```
 
-### Required number of basic operations
+### Complexity / Required number of basic operations
 
 Each partial product requires %$\leq 2n%$ basic operations where %$n%$ is the input length. With %$n%$ rows there are in total %$2n^2%$ basic operations required.
 
@@ -63,6 +63,10 @@ We can use the information that %$m%$ is %$c_2%$ times larger then %$n%$. In our
 $$
 c_1 \cdot n \cdot m \Leftrightarrow c_1 \cdot n \cdot c_2 \cdot n \Rightarrow const \cdot n^2
 $$
+
+### Pseudocode
+
+### Implementation
 
 ## Karatsuba Multiplication
 
@@ -102,7 +106,7 @@ Step 5
 
 ### A Recursive Algorithm 
 
-In general every number can be expressed decomposed. Two numbers %$x,y%$ can be written in the following way 
+To understand the Karatsuba algorithm we go back one step. In general every number can be expressed decomposed. Two numbers %$x,y%$ can be written in the following way 
 
 $$
 \begin{aligned}
@@ -135,9 +139,9 @@ The base case is not mentioned here yet. Recursive algorithms need a base case. 
 
 The **base case** for integer multiplication are two single-digit numbers. They can be multiplied in one basic operation and return the result.
 
-### Karatsuba Algorithm
+### Explanation of the Karatsuba Algorithm
 
-The Karatsuba Algorithm is an improved version of the recursive algorithm explained in the previous chapter.
+The Karatsuba Algorithm is an improved version of the recursive algorithm explained in the previous section.
 
 Starting with the following expression that just expresses the multiplication of x and y.
 
@@ -167,3 +171,10 @@ Step 5
 ```
 
 This shows there are just three recursive multiplications required - plus some additions. 
+
+### Complexity
+
+### Pseudocode
+
+### Implementation
+
