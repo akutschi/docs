@@ -48,6 +48,14 @@ Usually sorting is done in-place. The algorithm compares the first value from th
 
 ## Complexity / Analysis / Running Time
 
+Worst-case performance
+
+$$ \cdot \log n
+O(n^2)
+$$
+
+## Relation to other Sorting Algorithms
+
 ## Pseudocode
 
 ## Implementation
