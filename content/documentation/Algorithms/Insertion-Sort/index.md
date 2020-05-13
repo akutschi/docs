@@ -50,7 +50,7 @@ Usually sorting is done in-place. The algorithm compares the first value from th
 
 Worst-case performance
 
-$$ \cdot \log n
+$$ 
 O(n^2)
 $$
 
