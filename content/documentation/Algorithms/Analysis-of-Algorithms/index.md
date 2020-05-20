@@ -5,7 +5,7 @@ categories:
     - algorithms
 tags:
     - analysis of algorithms
-draft: true
+draft: false
 ---
  
 The goal is to find the computational complexity of an algorithm – the amount of time, storage, or other resources needed to execute them.  This helps us to identify better and worse algorithms.
