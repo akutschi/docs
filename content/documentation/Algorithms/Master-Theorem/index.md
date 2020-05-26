@@ -25,7 +25,7 @@ Divide-and-conquer algorithms often follow a generic pattern, they solve a probl
 > $$
 >
 > **Parameters:**
-> * a = number of recursive calls
+> * a = number of recursive calls aka branching factor
 > * b = input size shrinkage factor
 > * d = exponent in running time of the "combine step"
 
@@ -58,3 +58,33 @@ The three cases correspond to three different types of the recursion trees. For 
 > **General case:** for %$n>1%$,
 >
 > $$T(n) \leq a \cdot T \left( \frac{n}{b} \right) + cn^d$$
+
+### Recursion Trees
+
+A recursion tree visualizes what happens when a recurrence is iterated. It shows the tree of recursive calls and the amount of work that is done at each call.
+
+The following graph[^RecursionCornell] is an example for a recursion tree of the following recurrence:
+
+$$ T(n) = 2 \cdot T(n/2) + n^2 $$
+
+![Recursion tree](RecursionTree.png)
+
+The rightmost column shows the total work done at each level of the recursion. Since this is a geometric series its sum is %$O(n^2)%$. The depth of the tree does not matter, since the amount of work done on each level is decreasing very fast. The total is only a constant factor more than the root.[^RecursionCornell]
+
+[^RecursionCornell]: https://www.cs.cornell.edu/courses/cs3110/2012sp/lectures/lec20-master/lec20.html
+
+Now the idea is to count the total number of operations performed by the subproblems at the j-th level, and then add up over all levels. At each level are %$a^j%$ different subproblems and each subproblem has the inputsize %$n/b^j%$.
+
+$$ \text{Work at level } j \leq a^j \cdot c \cdot \left[ \frac{n}{b^j} \right]^d $$
+
+- %$a^j%$: Number of subproblems 
+- %$c \cdot \left[ \frac{n}{b^j} \right]^d%$: Work per subproblem
+- %$\frac{n}{b^j}%$: Input size
+
+By separating the the parts that depend on the level %$j%$ and the parts that do not depend on the level we can rewrite the equation:
+
+$$ \text{Work at level } j \leq cn^d \cdot \left[ \frac{a}{b^d} \right]^j $$
+
+Now we can see the important ratio of %$a/b^d%$ that dictates the case of the master theorem.
+
+
