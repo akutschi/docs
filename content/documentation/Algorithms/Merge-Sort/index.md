@@ -4,7 +4,7 @@ date: 2020-05-07T18:29:29-04:00
 categories:
     - algorithms
 tags:
-    - sort algorithm
+    - sorting
     - divide & conquer
 draft: false
 ---

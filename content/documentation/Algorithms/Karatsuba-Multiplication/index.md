@@ -5,6 +5,7 @@ categories:
     - algorithms
 tags:
     - multiplication
+    - divide & conquer
 draft: false
 ---
 
