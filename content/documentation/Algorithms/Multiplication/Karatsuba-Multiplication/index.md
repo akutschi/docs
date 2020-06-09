@@ -9,7 +9,7 @@ tags:
 draft: false
 ---
 
-This multiplication algorithm is an example of a _divide and conquer algorithm_. 
+This multiplication algorithm is an example of a _divide and conquer algorithm_. It is faster than the [conventional multiplication algorithm]({{< ref "../Grade-School-Multiplication/index.md" >}}), see also the section about [complexity]({{< ref "#complexity" >}})
 
 ## Example
 

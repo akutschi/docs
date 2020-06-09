@@ -9,7 +9,7 @@ tags:
 draft: false
 ---
  
-The master theorem is kind of a _black box_ method for determining the running time of recursive algorithms. This theorem can be applied to most divide-and-conquer algorithms, including [Karatsuba's multiplication]({{< ref "../Karatsuba-Multiplication/index.md" >}}) and [Strassen's matrix multiplication]({{< ref "../Strassens-Matrix-Multiplication/index.md" >}}).
+The master theorem is kind of a _black box_ method for determining the running time of recursive algorithms. This theorem can be applied to most divide-and-conquer algorithms, including [Karatsuba's multiplication]({{< ref "../../Multiplication/Karatsuba-Multiplication/index.md" >}}) and [Strassen's matrix multiplication]({{< ref "../../Multiplication/Strassens-Matrix-Multiplication/index.md" >}}).
 
 ## Standard Recurrences
 
