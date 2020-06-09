@@ -87,4 +87,87 @@ $$ \text{Work at level } j \leq cn^d \cdot \left[ \frac{a}{b^d} \right]^j $$
 
 Now we can see the important ratio of %$a/b^d%$ that dictates the case of the master theorem.
 
+Since we have now the work that is done at each level we can sum up, but how many levels are to sum up? We are assuming that %$n%$ is a power of %$b%$ and that the base case is reached when the input size is one, then the number of levels is exactly the number of times we need to divide %$n%$ by %$b%$ to reach 1, also know as %$\text{log}_b n%$. Summing up over all levels leads to the following equation:
 
+$$ \text{Total work} \leq cn^d \cdot \sum_{j=0}^{\text{log}_b n} \left[ \frac{a}{b^d} \right]^j $$
+
+Now we know the total work done at the end of a recursion tree. The next step is to distinguish the three cases.
+
+### The Three Cases
+
+The ratio %$a/b^d%$ is responsible for the three cases. To understand this we have to know what these terms represents:
+
+- %$a%$ represents the **rate of subproblem proliferation (RSP)**
+- %$b^d%$ represents the **rate of work shrinkage (RWS)**
+
+The three cases correspond to the three possible outcomes and the three fundamentally different types of recursion trees:
+
+$$ \text{Total work} \leq cn^d \cdot \sum_{j=0}^{\text{log}_b n} \left[ \frac{a}{b^d} \right]^j $$
+
+- RSP = RWS
+    - Work performed is the same at very recursion level
+- RSP < RWS
+    - Work performed is decreasing with the recursion level
+- RSP > RWS
+    - Work performed is increasing with the recursion level
+
+#### Case 1
+
+When %$a=b^d%$ then the algorithm performs the same amount of work at every level of its recursion tree. It is known how much work is done at the root (level 0) that is to say %$O(n^d%$). 
+
+> With %$O(n^d)%$ work per level, and with %$1+ \log_b n = O(\log n)%$ levels, we should expect a running expect a running time bound of
+> $$ O(n^d \log n) $$
+
+For the proof we have to remember the upper bound on the running time of a divide-and-conquer algorithm and with %$a=b^d%$ the right hand side simplifies to:
+
+$$ cn^d \cdot \sum_{j=0}^{\text{log}_b n} \underbrace{\left[ \underbrace{\frac{a}{b^d}}_{=1} \right]^j}_{=1 \text{ for each } j} = cn^d \cdot \underbrace{1+1+...+1}_{1+\log_b n \text{times}}$$
+
+which is %$O(n^d\log n)%$[^logconstinfo].
+
+[^logconstinfo]: Different logarithmic functions differ by a constant factor, there is is no need to specify the base of the algorithm
+
+#### Case 2
+
+When %$a < b^d%$ then the amount of work per level is decreasing with the level. Thus more work is done at level 0 than at any other level. The work done at the root dominates the running time of the algorithm.
+
+> With %$O(n^d)%$ work at the root, this best case scenario would result in an overall running time of
+> $$ O(n^d)$$
+
+For the proof we use a geometric series, which is for %$r \neq 1%$:
+
+$$ 1+r+r^2+...+r^k = \frac{1 - r^{k+1}}{1-r}$$
+
+For %$r<1%$ which equals this case with %$a < b^d%$ we can see that the geometric series is dominated by its first term, the first term is 1 and the sum is %$O(1)%$:
+
+$$ 1+r+r^2+...+r^k \leq \frac{1}{1-r} = \text{a constant independent of k}$$
+
+Keeping this in mind we can write the following:
+
+$$ cn^d \cdot \sum_{j=0}^{\text{log}_b n} \left[ \underbrace{\frac{a}{b^d}}_{=r<1} \right]^j = cn^d \cdot \underbrace{\sum_{j=0}^{\text{log}_b n} r^j}_{=O(1)} = \frac{cn^d}{1-r} = O(n^d)$$
+
+The big-O notation suppresses the the constants %$c%$ and %$\frac{1}{1-r}%$
+
+#### Case 3 
+
+When %$a>b^d%$ then the number of subproblems increases even faster than the work-per-subproblem shrinks. The work performed is increasing with the recursion level, with the most work done at the end of the recursion tree.
+
+The best-case scenario would be that the running time is dominated by the work done at the end of the recursion tree. At the end the base case is triggered, so the algorithm performs only %$O(1)%$ operations per end of the recursion tree. The question is now, how many ends does such an recursion tree have?
+
+We know there are %$a^j%$ nodes at each level %$j%$. The last level is %$j = \log_b n%$, so there are %$a^{\log_b n}%$ ends. Thus the best-case scenario would be a running time of %$O(a^{\log_b n})%$. And with the identity %$ a^{\log_b n} = n^{\log_b a}%$ we can summarize:
+
+> With %$O(1)%$ operations at each end (base case) and %$\log_b n%$ ends of the recursion tree, we can expect a running time of
+> $$ O(n^{\log_b a}) $$
+
+For this proof we use the geometric series again. For %$r>1%$ which equals this case with %$a > b^d%$ we can see that the geometric series is dominated by its last term, the last term is %$r^k%$ and the sum is %$\frac{r}{r-1}%$ times the last term:
+
+$$ 1+r+r^2+...+r^k = \frac{r^{k+1}-1}{r-1} \leq \frac{r^{k+1}}{r-1} = r^k \cdot \frac{r}{r-1}$$
+
+Keeping this in mind we can write the following:
+
+$$ cn^d \cdot \sum_{j=0}^{\text{log}_b n} \left[ \underbrace{\frac{a}{b^d}}_{=r>1} \right]^j = cn^d \cdot \underbrace{\sum_{j=0}^{\text{log}_b n} r^j}_{=O(r^{\log_b n})} = O(n^d \cdot r^{\log_b n}) = O\left(n^d \cdot \left(\frac{a}{b^d}\right)^{\log_b n}\right) = O(a^{\log_b n}) = O(n^{\log_b a})$$
+
+The second to last step can be done by some cancellations:
+
+$$ (b^{-d})^{\log_b n} = b^{-d \log_b n} = (b^{\log_b n})^{-d} = n^{-d} $$
+
+By this the term %$(1/b^d)^{log_b n}%$ cancels out the %$n^d%$ term and leaves the already known upper bound.
