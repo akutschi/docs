@@ -79,113 +79,69 @@ multiply(a[1..p], b[1..q], base)                            // Operands containi
 
 ## Implementation
 
-```cpp
+The implementation differs slightly from the pseudocode above. The first difference is that the `base` is tied to the decimal system and the second difference is the _integrated_ carry.
 
-// C++ program to multiply two numbers represented 
-// as strings. 
-#include<bits/stdc++.h> 
-using namespace std; 
-  
-// Multiplies str1 and str2, and prints result. 
-string multiply(string num1, string num2) 
-{ 
-    int len1 = num1.size(); 
-    int len2 = num2.size(); 
-    if (len1 == 0 || len2 == 0) 
-    return "0"; 
-  
-    // will keep the result number in vector 
-    // in reverse order 
-    vector<int> result(len1 + len2, 0); 
-  
-    // Below two indexes are used to find positions 
-    // in result.  
-    int i_n1 = 0;  
-    int i_n2 = 0;  
-      
-    // Go from right to left in num1 
-    for (int i=len1-1; i>=0; i--) 
-    { 
-        int carry = 0; 
-        int n1 = num1[i] - '0'; 
-  
-        // To shift position to left after every 
-        // multiplication of a digit in num2 
-        i_n2 = 0;  
-          
-        // Go from right to left in num2              
-        for (int j=len2-1; j>=0; j--) 
-        { 
-            // Take current digit of second number 
-            int n2 = num2[j] - '0'; 
-  
-            // Multiply with current digit of first number 
-            // and add result to previously stored result 
-            // at current position.  
-            int sum = n1*n2 + result[i_n1 + i_n2] + carry; 
-  
-            // Carry for next iteration 
-            carry = sum/10; 
-  
-            // Store result 
-            result[i_n1 + i_n2] = sum % 10; 
-  
-            i_n2++; 
-        } 
-  
-        // store carry in next cell 
-        if (carry > 0) 
-            result[i_n1 + i_n2] += carry; 
-  
-        // To shift position to left after every 
-        // multiplication of a digit in num1. 
-        i_n1++; 
-    } 
-  
-    // ignore '0's from the right 
-    int i = result.size() - 1; 
-    while (i>=0 && result[i] == 0) 
-    i--; 
-  
-    // If all were '0's - means either both or 
-    // one of num1 or num2 were '0' 
-    if (i == -1) 
-    return "0"; 
-  
-    // generate the result string 
-    string s = ""; 
-      
-    while (i >= 0) 
-        s += std::to_string(result[i--]); 
-  
-    return s; 
-} 
-  
-// Driver code 
-int main() 
-{ 
-    string str1 = "1235421415454545454545454544"; 
-    string str2 = "1714546546546545454544548544544545"; 
-      
-    if((str1.at(0) == '-' || str2.at(0) == '-') &&  
-        (str1.at(0) != '-' || str2.at(0) != '-' )) 
-        cout<<"-"; 
-  
-  
-    if(str1.at(0) == '-' && str2.at(0)!='-') 
-        { 
-            str1 = str1.substr(1); 
-        } 
-        else if(str1.at(0) != '-' && str2.at(0) == '-') 
-        { 
-            str2 = str2.substr(1); 
-        } 
-        else if(str1.at(0) == '-' && str2.at(0) == '-') 
-        { 
-            str1 = str1.substr(1); 
-            str2 = str2.substr(1); 
-        } 
-    cout << multiply(str1, str2); 
-    return 0; 
-} 
+```cpp
+// C++ program to multiply two very large numbers
+
+#include <iostream>
+#include <vector>
+#include <sstream>
+#include <iterator>
+
+// Function to multiply two numbers represented as strings
+std::string multiplication(std::string num1, std::string num2)
+{
+    std::vector<int> num1vec;
+    std::vector<int> num2vec;
+
+    // Convert string to vector of ints
+    for (size_t i = 0; i < num1.size(); ++i)
+    {
+        num1vec.push_back(num1[i] - '0');
+    }
+
+    // Convert string to vector of ints
+    for (size_t i = 0; i < num2.size(); ++i)
+    {
+        num2vec.push_back(num2[i] - '0');
+    }
+
+    int len1 = num1vec.size();
+    int len2 = num2vec.size();
+    // Create vector for solution with maximum possible length
+    std::vector<int> resultvec(len1 + len2);
+
+    // Go from right to left in num1vec
+    for (int i = len1 - 1; i >= 0; i--)
+    {
+        // Go from right to left in num2vec
+        for (int j = len2 - 1; j >= 0; j--)
+        {
+            int p = num1vec[i] * num2vec[j];
+            // Calculates the "carry" and keeps the results from previous calculations in mind
+            resultvec[i + j] = resultvec[i + j] + (resultvec[i + j + 1] + p) / 10;
+            // Calculate and store the result for position i+j+1
+            resultvec[i + j + 1] = (resultvec[i + j + 1] + p) % 10;
+        }
+    }
+
+    // Converts the vector to a string
+    std::stringstream resulttmp;
+    std::copy(resultvec.begin(), resultvec.end(), std::ostream_iterator<int>(resulttmp, ""));
+    std::string result = resulttmp.str();
+
+    return result;
+}
+
+// Driver code
+int main()
+{
+    std::string num1 = "3141592653589793238462643383279502884197169399375105820974944592";
+    std::string num2 = "2718281828459045235360287471352662497757247093699959574966967627";
+
+    std::cout << "Result: " << multiplication(num1, num2) << std::endl;
+
+    return 0;
+}
 ```
