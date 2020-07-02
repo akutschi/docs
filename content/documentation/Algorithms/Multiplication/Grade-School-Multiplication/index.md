@@ -79,6 +79,8 @@ multiply(a[1..p], b[1..q], base)                            // Operands containi
 
 ## Implementation
 
+### C++
+
 The implementation differs slightly from the pseudocode above. The first difference is that the `base` is tied to the decimal system and the second difference is the _integrated_ carry.
 
 ```cpp
