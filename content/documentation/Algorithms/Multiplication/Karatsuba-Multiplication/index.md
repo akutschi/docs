@@ -156,13 +156,11 @@ void string_equalize(std::string &string1, std::string &string2)
     int len2 = string2.size();
 
     // Make both strings of equal length
-
     while (len1 < len2)
     {
         string1 = "0" + string1;
         len1 = string1.size();
     }
-
     while (len2 < len1)
     {
         string2 = "0" + string2;
@@ -178,6 +176,7 @@ std::string string_add(std::string add1, std::string add2)
 
     int len1 = add1.size();
 
+    // Create result string with maximum possible length
     std::string result(len1 + 1, '0');
 
     for (int i = len1 - 1; i >= 0; i--)
@@ -190,6 +189,7 @@ std::string string_add(std::string add1, std::string add2)
         // Calculate and store the result for position i+j+1
         result[i + 1] = (sum % 10) + '0';
     }
+
     // Remove leading zeros and return string
     return result.erase(0, std::min(result.find_first_not_of('0'), result.size() - 1));
 }
@@ -201,6 +201,8 @@ std::string string_sub(std::string sub1, std::string sub2)
     string_equalize(sub1, sub2);
 
     int len1 = sub1.size();
+
+    // Create result string with maximum possible length
     std::string result(len1, '0');
 
     int carry = 0;
@@ -208,6 +210,7 @@ std::string string_sub(std::string sub1, std::string sub2)
     for (int i = len1 - 1; i >= 0; i--)
     {
         int diff = (sub1[i] - '0') - (sub2[i] - '0') - carry;
+
         if (diff < 0)
         {
             diff += 10;
@@ -222,6 +225,7 @@ std::string string_sub(std::string sub1, std::string sub2)
         result[i] = (diff % 10) + '0';
     }
 
+    // Remove leading zeros and return string
     return result.erase(0, std::min(result.find_first_not_of('0'), result.size() - 1));
 }
 
@@ -254,12 +258,13 @@ std::string karatsuba(std::string num1, std::string num2)
 
     // Get middle of the two strings
     int n_half = std::ceil((float)len1 / 2);
+    int center = len1 - n_half;
 
     // Create substrings, separated in the center
-    std::string num1_high = num1.substr(0, len1 - n_half); // Substring starts at position 0 from num1 and ends after n_half characters
-    std::string num1_low = num1.substr(len1 - n_half);     // Substring starts at position n_half and includes all charcaters until the end of the string
-    std::string num2_high = num2.substr(0, len1 - n_half);
-    std::string num2_low = num2.substr(len1 - n_half);
+    std::string num1_high = num1.substr(0, center); // Substring starts at position 0 from num1 and ends after n_half characters
+    std::string num1_low = num1.substr(center);     // Substring starts at position n_half and includes all charcaters until the end of the string
+    std::string num2_high = num2.substr(0, center);
+    std::string num2_low = num2.substr(center);
 
     std::string res_low = karatsuba(num1_low, num2_low);   // Recursive call
     std::string res_hig = karatsuba(num1_high, num2_high); // Recursive call
@@ -268,10 +273,12 @@ std::string karatsuba(std::string num1, std::string num2)
     std::string mix2 = string_add(num2_low, num2_high);
     std::string res_mix = karatsuba(mix1, mix2); // Recursive call
 
+    // "Final components" of the Karatsuba multiplication
     std::string first = res_hig + std::string(2 * n_half, '0');
     std::string second = string_sub(string_sub(res_mix, res_hig), res_low) + std::string(n_half, '0');
     std::string third = res_low;
 
+    // Return the result of the multiplication by adding all "final components"
     return string_add(first, string_add(second, third));
 }
 
@@ -280,12 +287,12 @@ int main()
 {
     std::string num1 = "314159265358979323846264338327950288419716939937510582097494459";
     std::string num2 = "271828182845904523536028747135266249775724709369995957496696762";
+    
+    std::cout << "Result: \n"
+              << karatsuba(num1, num2) << std::endl;
     // Correct result: 85397342226735670654635508695465744950348885357651149618796010996400308128465617086587964465544038881186949128462929098241758
     // Compare with Wolfram Alpha:
     // https://www.wolframalpha.com/input/?i=314159265358979323846264338327950288419716939937510582097494459*271828182845904523536028747135266249775724709369995957496696762
-
-    std::cout << "Result: \n"
-              << karatsuba(num1, num2) << std::endl;
 
     return 0;
 }
