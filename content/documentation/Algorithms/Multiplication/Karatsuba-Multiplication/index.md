@@ -148,7 +148,7 @@ To get the correct case just insert the parameters. We will see then that the th
 
 $$ a>b^d \Rightarrow O(n^{\log_b a}) \Longrightarrow O(n^{\log_2 3}) $$
 
-The Karatsuba algorithm is of complexity %$O(n^{\log_2 3})%$.
+The Karatsuba algorithm is of complexity %$O(n^{\log_2 3})%$. For small values of %$n%$ the Karatsuba algorithm is slower than the long multiplication because of the overhead of recursion.
 
 ## Pseudocode
 
