@@ -113,6 +113,43 @@ This shows there are just three recursive multiplications required - plus some a
 
 ## Complexity
 
+Since this is a _divide and conquer algorithm_ the [master theorem]({{< ref "../../Foundations/Master-Theorem/index.md" >}}) can be applied. To use the formula 
+
+$$
+T(n) \leq a \cdot T \left( \frac{n}{b} \right) + O(n^d)
+$$
+
+three parameters are required. **a** the branching factor, **b** the shrinkage factor and **d** the exponent of the running time of the combine step.
+
+Looking at the previous section we see that we break two %$n%$-digit numbers into four %$n/2%$ numbers. And the equation 
+
+$$
+x \cdot y = 10^n ac + 10^{n/2} [(a+b) \cdot (c+d) - ac -bd]+ bd
+$$
+
+shows that when we keep Gauss's trick in mind that we need just three multiplications and couple of additions. Therefore breaking the number into halves then the shrinkage factor is %$b=2%$ and since we have three more multiplications per recurrence the branching factor is %$a=3%$. The work done outside of the recursive call is unchanged and equals %$d=1%$.
+
+$$
+T(n) \leq 3 \cdot T \left( \frac{n}{2} \right) + O(n)
+$$
+
+With the now known three parameters the [master theorem]({{< ref "../../Foundations/Master-Theorem/index.md" >}}) can be applied. 
+
+$$
+T(n) =
+\begin{cases}
+O(n^d \log n),  & \text{if $a=b^d$} \\\\
+O(n^d), & \text{if $a < b^d$} \\\\
+O(n^{\log_b a}),  & \text{if $a>b^d$}
+\end{cases}
+$$
+
+To get the correct case just insert the parameters. We will see then that the third case is the correct result:
+
+$$ a>b^d \Rightarrow O(n^{\log_b a}) \Longrightarrow O(n^{\log_2 3}) $$
+
+The Karatsuba algorithm is of complexity %$O(n^{\log_2 3})%$.
+
 ## Pseudocode
 
 ```plaintext
