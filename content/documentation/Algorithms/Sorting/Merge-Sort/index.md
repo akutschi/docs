@@ -74,25 +74,137 @@ $$
 
 ## Pseudocode
 
+This pseudocode was found on [Algorithmist](https://algorithmist.com/wiki/Merge_sort).
+
 ```plaintext
-A = 1st sorted array (length=n/2)
-B = 2nd sorted array (length=n/2)
-C = Output array (length=n)
+func mergesort( var a as array )
+     if ( n == 1 ) return a
 
-i = Index of array A
-j = Index of array B
-k = Index of array C
+     var l1 as array = a[0] ... a[n/2]
+     var l2 as array = a[n/2+1] ... a[n]
 
+     l1 = mergesort( l1 )
+     l2 = mergesort( l2 )
 
-for k=1 to n
-    if A(i) < B(j)
-        C(k) = A(i)
-        i++
-    else [B(j) < A(i)]
-        C(k) = B(j)
-        j++
-end
+     return merge( l1, l2 )
+end func
+
+func merge( var a as array, var b as array )
+     var c as array
+
+     while ( a and b have elements )
+          if ( a[0] > b[0] )
+               add b[0] to the end of c
+               remove b[0] from b
+          else
+               add a[0] to the end of c
+               remove a[0] from a
+     while ( a has elements )
+          add a[0] to the end of c
+          remove a[0] from a
+     while ( b has elements )
+          add b[0] to the end of c
+          remove b[0] from b
+     return c
+end func
 ```
 
 ## Implementation
 
+### C++
+
+```cpp
+// C++ merge sort implementation
+
+#include <iostream>
+#include <vector>
+#include <math.h> // Required for std::ceil
+
+// Function to merge two sorted arrays
+std::vector<int> merge(std::vector<int> vector1, std::vector<int> vector2)
+{
+    // Vector to store the result of the merge
+    std::vector<int> sorted_list;
+
+    uint i = 0; // Counter for split1
+    uint j = 0; // Counter for split2
+
+    // Compare values of both vectors and store in result vector
+    while (i < vector1.size() && j < vector2.size())
+    {
+        if (vector1[i] <= vector2[j])
+        {
+            sorted_list.push_back(vector1[i]);
+            i++;
+        }
+        else
+        {
+            sorted_list.push_back(vector2[j]);
+            j++;
+        }
+    }
+    while (i < vector1.size()) // Store remaining values in result vector
+    {
+        sorted_list.push_back(vector1[i]);
+        i++;
+    }
+    while (j < vector2.size()) // Store remaining values in result vector
+    {
+        sorted_list.push_back(vector2[j]);
+        j++;
+    }
+
+    return sorted_list;
+}
+
+// Function for the merge sort algorithm
+std::vector<int> merge_sort(std::vector<int> list)
+{
+    int length = list.size();
+
+    // Base case
+    if (length == 1)
+    {
+        return list;
+    }
+
+    // Recursive case
+    int center = std::ceil((float)length / 2);
+
+    std::vector<int> split1(list.begin(), list.begin() + center); // "Left" part of the unsorted list
+    std::vector<int> split2(list.begin() + center, list.end());   // "Right" part of the unsorted list
+
+    std::vector<int> sublist1 = merge_sort(split1); // Recursive call
+    std::vector<int> sublist2 = merge_sort(split2); // Recursice call
+    list = merge(sublist1, sublist2);               // Call merge function
+
+    return list;
+}
+
+// Driver code
+int main()
+{
+    std::vector<int> unsorted = {6, 15, 33, 1, 8, 7, 2, 4, 10, 12, 23, 56, 5};
+
+    // Print unsorted list
+    std::cout << "Unsorted list: ";
+    for (auto i : unsorted)
+    {
+        std::cout << i << ' ';
+    }
+    std::cout << std::endl;
+
+    // Call merge-sort function
+    std::vector<int> sorted = merge_sort(unsorted);
+
+    // Print sorted list
+    std::cout << "Sorted list:   ";
+    for (auto i : sorted)
+    {
+        std::cout << i << ' ';
+    }
+    std::cout << std::endl;
+
+    return 0;
+}
+```
