@@ -66,7 +66,36 @@ Sorted list                             1,2,3,4,5,6,7,8
 ```
 ## Complexity / Analysis / Running Time
 
-Worst-case performance
+Since this is a _divide and conquer algorithm_ the [master theorem]({{< ref "../../Foundations/Master-Theorem/index.md" >}}) can be applied. To use the formula 
+
+$$
+T(n) \leq a \cdot T \left( \frac{n}{b} \right) + O(n^d)
+$$
+
+three parameters are required. **a** the branching factor, **b** the shrinkage factor and **d** the exponent of the running time of the combine step.
+
+In merge sort are two recursive calls, so the branching factor is %$a=2%$. Each recursive call receives half of the input, therefore the shrinkage factor is %$b=2%$. The work that is done outside these recursive calls is dominated by the merge subroutine and runs in linear time, so %$d=1%$
+
+$$
+T(n) \leq 2 \cdot T \left( \frac{n}{2} \right) + O(n)
+$$
+
+With the now known three parameters the [master theorem]({{< ref "../../Foundations/Master-Theorem/index.md" >}}) can be applied. 
+
+$$
+T(n) =
+\begin{cases}
+O(n^d \log n),  & \text{if $a=b^d$} \\\\
+O(n^d), & \text{if $a < b^d$} \\\\
+O(n^{\log_b a}),  & \text{if $a>b^d$}
+\end{cases}
+$$
+
+To get the correct case just insert the parameters. We will see then that the first case is the correct result:
+
+$$ a=b^d \Rightarrow O(n \log n) $$
+
+The merge-sort algorithm has a worst-case performance of
 
 $$
 O(n \cdot \log n)
