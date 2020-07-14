@@ -55,3 +55,7 @@ Step 5 − Repeat until list is sorted
 ```
 
 ## Implementation
+
+## Links & Resources
+
+- [Wikipedia: Selection Sort](https://en.wikipedia.org/wiki/Selection_sort)

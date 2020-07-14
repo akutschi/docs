@@ -334,3 +334,9 @@ int main()
     return 0;
 }
 ```
+
+## Links & Resources
+
+- [Wikipedia: Multiplication Algorithm](https://en.wikipedia.org/wiki/Multiplication_algorithm)
+- Tim Roughgarden (2017). Algorithms Illuminated: Part1 The Basics. Soundlikeyourself Publishing, ISBN: 978-0999282908
+- https://www.geeksforgeeks.org/karatsuba-algorithm-for-fast-multiplication-using-divide-and-conquer-algorithm/

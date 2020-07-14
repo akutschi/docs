@@ -237,3 +237,10 @@ int main()
     return 0;
 }
 ```
+
+## Links & Resources
+
+- Thomas H. Cormen; Charles E. Leiserson; Ronald L. Rivest; Clifford Stein (2009). Introduction To Algorithms (3rd ed.). MIT Press. ISBN 978-0-262-03384-8.
+- Tim Roughgarden (2017). Algorithms Illuminated: Part1 The Basics. Soundlikeyourself Publishing, ISBN: 978-0999282908
+- [Wikipedia: Merge Sort](https://en.wikipedia.org/wiki/Merge_sort)
+- https://www.geeksforgeeks.org/merge-sort/

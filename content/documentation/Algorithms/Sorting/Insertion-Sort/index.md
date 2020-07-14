@@ -59,3 +59,7 @@ $$
 ## Pseudocode
 
 ## Implementation
+
+## Links & Resources
+
+- [Wikipedia: Insertion Sort](https://en.wikipedia.org/wiki/Insertion_sort)

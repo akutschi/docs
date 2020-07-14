@@ -171,3 +171,10 @@ The second to last step can be done by some cancellations:
 $$ (b^{-d})^{\log_b n} = b^{-d \log_b n} = (b^{\log_b n})^{-d} = n^{-d} $$
 
 By this the term %$(1/b^d)^{log_b n}%$ cancels out the %$n^d%$ term and leaves the already known upper bound.
+
+## Links & Resources
+
+- [Wikipedia: Master Theorem](https://en.wikipedia.org/wiki/Master_theorem_(analysis_of_algorithms))
+- Thomas H. Cormen; Charles E. Leiserson; Ronald L. Rivest; Clifford Stein (2009). Introduction To Algorithms (3rd ed.). MIT Press. ISBN 978-0-262-03384-8.
+- Tim Roughgarden (2017). Algorithms Illuminated: Part1 The Basics. Soundlikeyourself Publishing, ISBN: 978-0999282908
+- Massachusetts Institute of Technology (MIT), [Master Theorem: Practice Problems and Solutions](https://people.csail.mit.edu/thies/6.046-web/master.pdf)

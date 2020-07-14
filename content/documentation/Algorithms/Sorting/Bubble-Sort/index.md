@@ -49,3 +49,7 @@ $$
 ## Pseudocode
 
 ## Implementation
+
+## Links & Resources
+
+- [Wikipedia: Bubble Sort](https://en.wikipedia.org/wiki/Bubble_sort)

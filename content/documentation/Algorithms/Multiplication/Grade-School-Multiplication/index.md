@@ -194,3 +194,7 @@ int main()
     return 0;
 }
 ```
+
+## Links & Resources
+
+- [Wikipedia: Multiplication Algorithm](https://en.wikipedia.org/wiki/Multiplication_algorithm)

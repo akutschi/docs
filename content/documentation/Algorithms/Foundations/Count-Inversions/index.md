@@ -276,3 +276,9 @@ int main()
     return 0;
 }
 ```
+
+## Links & Resources
+
+- Tim Roughgarden (2017). Algorithms Illuminated: Part1 The Basics. Soundlikeyourself Publishing, ISBN: 978-0999282908
+- https://www.cp.eng.chula.ac.th/~prabhas//teaching/algo/algo2008/count-inv.htm
+- https://www.geeksforgeeks.org/counting-inversions/

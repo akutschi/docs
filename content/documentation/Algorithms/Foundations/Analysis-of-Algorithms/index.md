@@ -110,3 +110,10 @@ Little-omega is more strict than the big-omega notation since %$T(n)=\omega(f(n)
 > $$ T(n) \geq c \cdot f(n) $$
 >
 > for all %$n \geq n_0%$.
+
+## Links & Resources
+
+ - [Wikipedia: Big O Notation](https://en.wikipedia.org/wiki/Big_O_notation)
+ - Tim Roughgarden (2017). Algorithms Illuminated: Part1 The Basics. Soundlikeyourself Publishing, ISBN: 978-0999282908
+ 
+ 
