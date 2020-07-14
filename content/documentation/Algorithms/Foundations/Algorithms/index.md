@@ -131,3 +131,8 @@ Algorithms can be classified by the amount of time they need to complete compare
     - Time is an exponential function of the input size
     - %$O(c^n) \text{ with } c > 1%$
 
+## Links & Resources
+
+- [Wikipedia: Algorithm](https://en.wikipedia.org/wiki/Algorithm)
+
+
