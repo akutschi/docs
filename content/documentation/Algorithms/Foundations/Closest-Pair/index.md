@@ -38,14 +38,14 @@ $$d(p_1,p_2) = \sqrt{(x_1 - x_2)^2 + (y_1 - y_2)^2}$$
 
 [^sqrt]: In real world applications the computation of the square root is not required; the result will be the same.
 
-The **brute-force method** can be used to find these two points. Just compute the Euclidian distance between each pair of points one-by-one. Since this is very time consuming, we can do better with a **divide and conquer algorithm**. This approach is consists of a preprocessing step and the main divide and conquer step.
+The **brute-force method** can be used to find these two points. Just compute the Euclidian distance between each pair of points one-by-one. Since this is very time consuming, we can do better with a **divide and conquer algorithm**.
 
-The **preprocessing step** makes copies of the points and sorts them with a time complexity of %$O(n \log n)%$:
+The calculation of the **closest step** starts with the **preprocessing step** and makes copies of the points and sorts them with a time complexity of %$O(n \log n)%$:
 
 - A copy of the points %$P_x%$ sorted by %$x%$-coordinates.
 - A copy of the points %$P_y%$ sorted by %$y%$-coordinates.
 
-Now comes the **divide and conquer step** to compute the closest pair. In a first step %$P_x%$ will be divided into two halves %$L%$ and %$R%$, this can be implemented in %$O(n)%$ time:
+The next step computes the closest pair for each side. For this %$P_x%$ will be divided into two halves %$L%$ and %$R%$, this can be implemented in %$O(n)%$ time:
 
 - Then %$L_x%$, the first half of %$P_x%$ sorted by %$x%$-coordinate will be derived
     - Just split %$P_x%$ in half since this is already sorted
@@ -56,21 +56,68 @@ Now comes the **divide and conquer step** to compute the closest pair. In a firs
 
 The next step are the recursive calls to get closest pair for each side:
 
-- Get the closest pair %$(l_1,l_2)%$ for %$L_x%$ and %$L_y%$
-- Get the closest pair %$(r_1,r_2)%$ for %$R_x%$ and %$R_y%$
-
-But we need more since the case of split pairs has to be covered. Split pairs are closest pairs when both points are not in the same side.
-
+- Get the **closest pair** %$(l_1,l_2)%$ for %$L_x%$ and %$L_y%$
+- Get the **closest pair** %$(r_1,r_2)%$ for %$R_x%$ and %$R_y%$
 - Calculate %$\delta%$ the minimum of the distance between the closest pair that is left or right
-- Hand over this value %$\delta%$ explicitly to the function that calculates the closest split pair
-- Then use the brute force method to compare all points that are in the range %$x_{max} \pm \delta%$ and return %$(s_1,s_2)%$ 
-    - %$x_{max}%$ is the largest x-coordinate in the left half - %$O(1)%$
+
+But we need more since the case of split pairs has to be covered. Split pairs are given when both points are not on the same side. The computation of the **closest split pair** can be done in %$O(n)%$. The idea is to do a brute force search over a restricted set of point pairs.
+
+- Hand over the value %$\delta%$ explicitly to the function that calculates the closest split pair
+- Then use the brute force method to compare all points that are in the range %$\bar{x} \pm \delta%$ and return %$(s_1,s_2)%$ 
+    - %$\bar{x}%$ is the x-coordinate of the rightmost point in the left half - %$O(1)%$
     - Sort the points by y-coordinates - %$O(n)%$
+    - Total number of loop iterations is less than %$7 \times%$ the number of points between %$\bar{x} \pm \delta \Rightarrow O(n)%$     
 
 Finally return the best of %$(l_1,l_2)%$, %$(r_1,r_2)%$ and %$(s_1,s_2)%$ 
 
-
 The base case is given with two or three points; then the brute force method is applied.
+
+### Correctness of the Divide and Conquer Strategy
+
+The following guarantees that when the closest pair is split pair, its points appear in the filtered set %$S_y%$.
+
+> In the subroutine to find the closest split pair, we suppose %$(p,q)%$ is a split pair with %$d(p,q) < \delta%$, where %$\delta%$ is the smallest distance between a left air or right pair of points, Then:
+>
+> (1) %$p%$ and %$q%$ will be included in the set %$S_y%$
+>
+> (2) at most six points of %$S_y%$ have a y-coordinate in between those of %$p%$ and %$q%$
+
+The above-mentioned statements ensures that if the closest pair is a split pair, the subroutine that finds them returns it. This is because %$p%$ and %$q%$ belong to the same set %$S_y%$ and there are at most six points between them in y-coordinate. The algorithm searches over all pairs of points that satisfy these two properties and will compute the closest pair, which must be %$(p,q)%$.
+
+We also know that for every set %$P%$ with two or more points in the plane, the algorithm that finds the closest pair computes the closest pair of %$P%$ and runs in %$O(n \log n)%$ time. The running time is dominated by the preprocessing step and runs in %$O(n \log n)%$ time, while the rest of this algorithm has the same asymptotic running time as [merge sort]({{< ref "../../Sorting/Merge-Sort/index.md" >}}).
+
+To _proof the first of the two statements_ above, we assume that there is a split pair %$(p,q)%$, with %$p%$ in the left half, %$q%$ in the right half of the point set and %$d(p,q)<\delta%$. We can write the following equation:
+
+$$
+\begin{aligned}
+\delta &> d(p,q) \\\\
+       &= \sqrt{(x_1-x_2)^2+(y_1-y_2)^2} \\\\
+       &\geq \sqrt{\text{max}\left[(x_1-x_2)^2,(y_1-y_2)^2\right]} \\\\
+       &= \text{max}\left[(x_1-x_2)^2,(y_1-y_2)^2\right]
+\end{aligned}
+$$
+ 
+We can conclude that the difference between %$p%$ and %$q%$ is less than %$\delta%$ in their x- and y-coordinates:
+
+$$ |x_1-x_2|,|y_1-y_2| < \delta $$
+
+We can make now the following statements to proof:
+
+$$ x_1 \leq \bar{x} \land x_1 + \delta \leq x_2 \Rightarrow x_2 \leq \bar{x} + \delta $$
+
+$$ x_2 \geq \bar{x} \land x_2 - \delta \geq x_1 \Rightarrow x_1 \geq \bar{x} - \delta $$
+
+Now we _proof the second of the two statements_. For this we draw eight boxes in the plane in a 2x4 pattern around %$\bar{x}%$, where each box has side length %$\delta/2%$. The bottom of the boxes is aligned with the lower of the points %$p%$ and %$q%$.
+
+![Closest Pair of Points Proof](proof_closest_pair.png)
+
+The eight boxes contain not more than eight points, including %$p%$ and %$q%$. So there can be just 6 points in between %$p%$ and %$q%$ ion y-coordinate. Therefore we have to make up to 7 calculations in the brute force part of the closest split pair part of the algorithm. 
+
+But what would happen if there are two points in one box? This would led to a contradiction. In the image the points %$a%$ and %$b%$ are in one box farthest apart from each other. The distance between them would be 
+
+$$ \sqrt{2} \cdot \frac{\delta}{2} < \delta $$
+
+But this would contradict the assumption that there is no pair either on the left or right side that is at a distance less then %$\delta%$. This contradiction implies that each box has at most one point.
 
 ## Complexity / Analysis / Running Time
 
@@ -115,6 +162,7 @@ $$
 O(n \cdot \log n)
 $$
 
+We see here and we already anticipated in the [previous section](#explanation) that the time complexity is dominated by the time-complexity of the sorting step. 
 ## Pseudocode
 
 ### Brute Force
