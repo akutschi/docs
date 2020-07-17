@@ -48,17 +48,42 @@ Usually sorting is done in-place. The algorithm compares the first value from th
 
 ## Complexity / Analysis / Running Time
 
-Worst-case performance
+Worst-case performance of
 
 $$ 
 O(n^2)
 $$
 
+is given in an array sorted in reverse oder. If the array is already sorted then the running time is linear %$O(n)%$. 
+
+The average running time is also quadratic, which makes this algorithm impractical for sorting large arrays, but insertion sort os one of the fastest algorithms for sorting very small arrays, even faster than [quicksort]({{< ref "../Quick-Sort/index.md" >}}). Indeed, good implementations of quicksort will use insertion sort for arrays smaller than a certain threshold. 
+
 ## Relation to other Sorting Algorithms
+
+This algorithm is similar to [selection sort]({{< ref "../Selection-Sort/index.md" >}}), after %$k%$ passes through the array, the first %$k%$ elements are in sorted order. The difference is that insertion sort scans backwards from the current entry, while selection sort scans forwards. 
+
+Selection sort must scan all remaining elements to find the absolute smallest element in the unsorted part of the list, in contrast insertion sort requires only a single comparison when the %$(k + 1)%$-st element is greater than the %$k%$-th element; if the input array is already sorted or partially sorted then this is frequently true and insertion sort is more efficient than selection sort. On average insertion sort will perform about half as many comparisons as selection sort on average. If the input array is reverse-sorted, insertion sort performs just as many comparisons as selection sort. 
+
+Insertion sort requires more writes since, on each iteration, inserting the %$(k + 1)%$-st element into the sorted portion of the array requires many element swaps to shift all of the following elements, while only a single swap is required for each iteration of selection sort. In general, insertion sort will write to the array %$O(n^2)%$ times, whereas selection sort will write only %$O(n)%$ times. For this reason selection sort may be preferable in cases where writing to memory is more expensive than reading, such as with EEPROM or flash memory. 
 
 ## Pseudocode
 
+```plaintext
+i <- 1
+while i < length(A)
+    x <- A[i]
+    j <- i - 1
+    while j >= 0 and A[j] > x
+        A[j+1] <- A[j]
+        j <- j - 1
+    end while
+    A[j+1] <- x[3]
+    i <- i + 1
+end while
+```
+<!--
 ## Implementation
+-->
 
 ## Links & Resources
 
