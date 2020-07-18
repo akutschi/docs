@@ -14,6 +14,7 @@ But it has some performance advantages over more complicated algorithms in some 
 
 ## Example
 
+{{<table>}}
 | # | Sorted Sublist       | Unsorted Sublist     | Least Element in Unsorted Sublist |
 |---|----------------------|----------------------|-----------------------------------|
 | 0 | ( )                  | (11, 25, 12, 22, 64) | 11                                |
@@ -22,6 +23,7 @@ But it has some performance advantages over more complicated algorithms in some 
 | 3 | (11, 12, 22)         | (25, 64)             | 25                                |
 | 4 | (11, 12, 22, 25)     | (64)                 | 64                                |
 | 5 | (11, 12, 22, 25, 64) | ( )                  |                                   |
+{{</table>}}
 
 ## Explanation
 
