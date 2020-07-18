@@ -38,17 +38,41 @@ Third Pass
 ## Explanation
 
 During one pass the algorithm compares two adjacent elements and swap them if required. It starts with the first and second elements, then with the second and third, and so forth. After comparing the %$n-1%$-th and %$n%$-th elements the pass is finished and the algorithm starts the next pass. If one pass sorts all elements then one more pass without any swaps is required since the algorithm does not know anything about this.
+
 ## Complexity / Analysis / Running Time
 
-Worst-case performance
+This algorithm has a worst-case and average complexity of
 
 $$ 
 O(n^2)
 $$
 
+Other %$О(n^2)%$ sorting algorithms, such as insertion sort, generally run faster than bubble sort, and are no more complex. 
+
+The only advantage that bubble sort has over most other algorithms, but not insertion sort, is that the ability to detect that the list is already sorted  is built into the algorithm. When the list is already sorted (best-case), the complexity of bubble sort is  %$O(n)%$.
+
 ## Pseudocode
 
+```plaintext
+procedure bubbleSort(A : list of sortable items)
+    n := length(A)
+    swapped := true
+    repeat
+        swapped := false
+        for i := 1 to n-1 inclusive do
+            /* if this pair is out of order */
+            if A[i-1] > A[i] then
+                /* swap them and remember something changed */
+                swap(A[i-1], A[i])
+                swapped := true
+            end if
+        end for
+    until not swapped
+end procedure
+```
+<!--
 ## Implementation
+-->
 
 ## Links & Resources
 
