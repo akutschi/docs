@@ -36,13 +36,25 @@ To find the smallest the algorithm iterates over every element of the unsorted a
 
 ## Complexity / Analysis / Running Time
 
-Worst-case performance
+Searching for the minimum requires scanning %$n%$ elements - %$n-1%$ comparisons - and then swapping it into the first position of the array. Finding the next lowest minimum requires %$n-1%$ elements and so on. The total number of comparisons is then:
+
+$$
+(n-1)+(n-2)+...+1 = \sum^{n-1}_{i=1} i = \frac{(n-1)+1}{2}(n-1) = \frac{1}{2}n(n-1) = \frac{1}{2}(n^2-n)
+$$
+
+Which is then of complexity:
 
 $$ 
 O(n^2)
 $$
 
 ## Relation to other Sorting Algorithms
+
+ Insertion sort is very similar in that after the %$k%$-th iteration, the first %$k%$ elements in the array are in sorted order. Insertion sort's advantage is that it only scans as many elements as it needs in order to place the %$k+1%$-st element, while selection sort must scan all remaining elements to find the %$k+1%$-st element. 
+
+On average insertion sort will perform about half as many comparisons as selection sort on average. If the input array is reverse-sorted, insertion sort performs just as many comparisons as selection sort. 
+
+Selection sort requires less writes than insertion sort since only a single swap is required. In general, insertion sort will write to the array %$O(n^2)%$ times, whereas selection sort will write only %$O(n)%$ times. For this reason selection sort may be preferable in cases where writing to memory is more expensive than reading, such as with EEPROM or flash memory. 
 
 ## Pseudocode
 
@@ -54,7 +66,9 @@ Step 4 − Increment MIN to point to next element
 Step 5 − Repeat until list is sorted
 ```
 
+<!--
 ## Implementation
+-->
 
 ## Links & Resources
 
