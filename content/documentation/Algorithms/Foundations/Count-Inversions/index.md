@@ -183,7 +183,6 @@ end func
 #include <math.h> // Required for std::ceil
 
 long int inversion_counter = 0; // Global variable for counter - very bad design...
-//TODO: Remove the global variable!
 
 // Function to merge two sorted arrays
 std::vector<int> merge(std::vector<int> vector1, std::vector<int> vector2)
