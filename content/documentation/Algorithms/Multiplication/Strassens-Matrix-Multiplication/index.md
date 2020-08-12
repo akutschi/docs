@@ -272,4 +272,4 @@ End If
 
 - [Wikipedia: Strassen Algorithm](https://en.wikipedia.org/wiki/Strassen_algorithm)
 - Tim Roughgarden (2017). Algorithms Illuminated: Part1 The Basics. Soundlikeyourself Publishing, ISBN: 978-0999282908
-- https://stanford.edu/~rezab/classes/cme323/S16/notes/Lecture03/cme323_lec3.pdf
+- https://stanford.edu/~rezab/classes/cme323/S16/notes/Lecture03/cme323_lec3.pdf or [here]({{< ref "cme323_lec3.pdf" >}})
