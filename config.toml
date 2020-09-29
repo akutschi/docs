@@ -13,6 +13,10 @@ enableEmoji = true
   homeText = "No eye candy!"
   dateFormat = "2006-01-02"
 
+[params.footer] 
+  github = "https://github.com/akutschi/docs"
+  gitlab = "https://gitlab.com/akutschi/docs"
+
 [markup]
   [markup.highlight]
     lineNos = true
