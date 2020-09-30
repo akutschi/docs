@@ -1,3 +1,3 @@
 ---
-title: List of Blog Articles
+title: Blog Articles
 ---
