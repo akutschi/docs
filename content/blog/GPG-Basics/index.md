@@ -61,10 +61,10 @@ We need to generate a lot of random bytes. It is a good idea to perform
 some other action (type on the keyboard, move the mouse, utilize the
 disks) during the prime generation; this gives the random number
 generator a better chance to gain enough entropy.
-gpg: /home/arthurk/.gnupg/trustdb.gpg: trustdb created
+gpg: /home/johndoe/.gnupg/trustdb.gpg: trustdb created
 gpg: key A5B2491173BD98A8 marked as ultimately trusted
-gpg: directory '/home/arthurk/.gnupg/openpgp-revocs.d' created
-gpg: revocation certificate stored as '/home/arthurk/.gnupg/openpgp-revocs.d/988958E85D62FAEEA102ED00A5B2491173BD98A8.rev'
+gpg: directory '/home/johndoe/.gnupg/openpgp-revocs.d' created
+gpg: revocation certificate stored as '/home/johndoe/.gnupg/openpgp-revocs.d/988958E85D62FAEEA102ED00A5B2491173BD98A8.rev'
 public and secret key created and signed.
 
 pub   rsa4096 2020-10-06 [SC]
@@ -79,9 +79,9 @@ sub   rsa4096 2020-10-06 [E]
 > key generation failed: No such file or directory
 > ```
 >
-> Solution: `gpgconf --kill gpg-agent`
+> [Solution](https://unix.stackexchange.com/questions/318385/no-such-file-or-directory-when-generating-a-gpg-key): `gpgconf --kill gpg-agent`
 
-After creation of the key `gpg --list-keys` shows the overview of the available public keys in the keyring.
+After creation of the key, `gpg --list-keys` shows the overview of the available public keys in the keyring.
 
 ```sh
 /home/johndoe/.gnupg/pubring.kbx
@@ -228,7 +228,7 @@ ssb   rsa4096 2020-10-06 [E]
 ssb   rsa4096 2020-10-06 [S]
 ```
 
-But why subkeys? The master key pair is very important since this is the basic proof of your identity and the start for building your reputation. If you lose or revoke the master key pair then you have to start building your reputation again from scratch. Subkeys can be revoked independently from the master keys, they can also be stored separately from the master keys. 
+But why subkeys? The master key pair is very important since this is the basic proof of your identity and the start for building your reputation. If you lose or revoke the master key pair then you have to start building your reputation from scratch again. Subkeys can be revoked independently from the master keys, they can also be stored separately from the master keys. 
 
 So create a master key pair and keep it safe. The master key should be only used for a few tasks:
 
