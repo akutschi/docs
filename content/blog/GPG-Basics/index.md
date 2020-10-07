@@ -247,7 +247,7 @@ So create a master key pair and keep it safe. The master key should be only used
 
 ### Export Public and Private Keys
 
-To export the public keys use `gpg --export -a "John Doe" > john_doe_public.key`.
+To export the public keys use `gpg --armor --export -a "John Doe" > john_doe_public.key`.
 
 ```sh
 -----BEGIN PGP PUBLIC KEY BLOCK-----
@@ -265,7 +265,7 @@ vJUjGOTM9tVOc6h/LlBZtEagquB49NmHNaAPZsKzehkwsHp4rmAjKJ2+Pg==
 -----END PGP PUBLIC KEY BLOCK-----
 ```
 
-To create the so called **laptop keypair** export the private keys by using `gpg --export-secret-key -a "John Doe" > john_doe_private.key`.
+To create the so called **laptop keypair** export the private keys by using `gpg --armor --export-secret-key -a "John Doe" > john_doe_private.key`.
 
 ```sh
 -----BEGIN PGP PRIVATE KEY BLOCK-----
