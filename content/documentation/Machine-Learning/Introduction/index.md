@@ -10,7 +10,7 @@ tags:
 draft: false
 ---
 
-## What Machine Learning is
+## What is Machine Learning?
 
 There exist two definitions of Machine Learning, the older one describes ML as
 
@@ -24,7 +24,7 @@ The more modern definition of ML is
 >
 >Tom Mitchell
 
-An example that is used in the Coursera [Machine Learning](https://www.coursera.org/learn/machine-learning) course is playing checkers:
+An example for the latter definition that is used in the Coursera [Machine Learning](https://www.coursera.org/learn/machine-learning) course is playing checkers:
 
 - "E" is the experience of playing many games of checkers
 - "T" is the task of playing checkers
