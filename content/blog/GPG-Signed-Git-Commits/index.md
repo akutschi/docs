@@ -98,3 +98,5 @@ export GPG_TTY
 ```
 
 to the `.bashrc`. 
+
+Another cause for this could be a missing `pinentry`. In my case `pinentry-qt` was missing. After installing it, the password prompt came up to get the GPG passphrase.
