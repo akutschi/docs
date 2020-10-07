@@ -90,13 +90,13 @@ error: gpg failed to sign the data
 fatal: failed to write commit object
 ```
 
-Then [add](http://manpages.ubuntu.com/manpages/focal/man1/gpg-agent.1.html)
+The problem is that the passphrase prompt does not come up. [Add](http://manpages.ubuntu.com/manpages/focal/man1/gpg-agent.1.html) then
 
 ```sh
 GPG_TTY=$(tty)
 export GPG_TTY
 ```
 
-to the `.bashrc`. 
+to the `.bashrc`. Now the password prompt comes up in the terminal. 
 
-Another cause for this could be a missing `pinentry`. In my case `pinentry-qt` was missing. After installing it, the password prompt came up to get the GPG passphrase.
+But in my case the prompt did not appear in VSCode, this was caused by a missing `pinentry`. In my specific case `pinentry-qt` was missing. After installing it, the password prompt came up to get the GPG passphrase.
