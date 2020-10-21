@@ -7,7 +7,7 @@ tags:
     - supervised learning
     - cost function
     - linear regression
-draft: true
+draft: false
 ---
  
 ## Multivariate Linear Regression
