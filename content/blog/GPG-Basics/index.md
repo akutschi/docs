@@ -81,7 +81,7 @@ sub   rsa4096 2020-10-06 [E]
 >
 > [Solution](https://unix.stackexchange.com/questions/318385/no-such-file-or-directory-when-generating-a-gpg-key): `gpgconf --kill gpg-agent`
 
-After creation of the key, `gpg --list-keys` shows the overview of the available public keys in the keyring.
+After creation of the key, `gpg --list-keys` shows the overview of the available public keys in the keyring. The abbreviations `pub` and `sec` are for the _pub primary key_ and _public sub-key_. 
 
 ```sh
 /home/johndoe/.gnupg/pubring.kbx
@@ -93,7 +93,7 @@ sub   rsa4096 2020-10-06 [E]
 
 ```
 
-The command `gpg --list-secret-keys` shows the available secret keys in the keyring.
+The command `gpg --list-secret-keys` shows the available secret keys in the keyring. Here `sec` and `ssb` are abbreviations for the _secret primary key_ and _secret sub-key_.
 
 ```sh
 /home/johndoe/.gnupg/pubring.kbx
@@ -563,3 +563,7 @@ uid           [ revoked] John Doe <john.doe@example.org>
 Until now everything happened locally. To inform the outside world we have to send the key to a keyserver:
 
 `gpg --keyserver https://keys.gnupg.net --send-key 988958E85D62FAEEA102[...]`
+
+## Links and Resources
+
+[What are `pub`, `sub`, `sec` and `ssb`?](https://crypto.stackexchange.com/a/66178)
