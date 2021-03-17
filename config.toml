@@ -4,7 +4,6 @@ title = "docs"
 theme = "dokugo"
 enableEmoji = true  
 
-
 [taxonomies]
   tag = "tags"
   category = "categories"
@@ -13,15 +12,19 @@ enableEmoji = true
   homeText = "No eye candy!"
   dateFormat = "2006-01-02"
 
-[params.footer] 
-  github = "https://github.com/akutschi/docs"
-  gitlab = "https://gitlab.com/akutschi/docs"
+[params.footer]
+  footerText = "This page is primarily a private page and contains the documentation for various projects. The blog and the documentation are more or less notepads to write down things and to explain them to myself."
+  copyrightyear = "2019-2020"
+  copyrightlink = "https://gitlab.com" 
+  copyrightname = "akutschi"  
+  github = "https://github.com/akutschi/dokugo"
+  gitlab = "https://gitlab.com/akutschi/dokugo"
 
 [markup]
   [markup.highlight]
-    lineNos = true
+    lineNos = false
     lineNumbersInTable = true
-    style = "friendly"
+    style = "solarized-dark"
   [markup.tableOfContents]
     endLevel = 6
     ordered = false
@@ -36,15 +39,11 @@ enableEmoji = true
     name = "Blog"
     url = "/blog/"
     weight = 2
+  [[menu.main]]
+    name = "Projects"
+    url = "/projects/"
+    weight = 3
    [[menu.main]]
     name = "Documentation"
     url = "/documentation/"
-    weight = 3
-  [[menu.main]]
-    name = "Categories"
-    url = "/categories/"
     weight = 4
-  [[menu.main]]
-    name = "Tags"
-    url = "/tags/"
-    weight = 5
