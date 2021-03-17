@@ -12,7 +12,7 @@ test:
 
 pages:
   script:
-    - hugo --baseURL=https://docs.kutschireiter.com/
+    - hugo
   artifacts:
     paths:
       - public
